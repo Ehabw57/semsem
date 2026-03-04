@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.8" />
+    <title>إلي سمسم</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Cairo", sans-serif;
+      }
+      .heart {
+        position: absolute;
+        color: #ff4d6d;
+        font-size: 20px;
+        animation: floatUp 6s linear infinite;
+      }
+
+      @keyframes floatUp {
+        from {
+          transform: translateY(0);
+          opacity: 1;
+        }
+        to {
+          transform: translateY(-100vh);
+          opacity: 0;
+        }
+      }
+
+      body {
+        overflow: hidden;
+        background: #111;
+        color: white;
+      }
+
+      .slide {
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding: 40px 20px;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.6s ease-in-out;
+      }
+
+      .slide.active {
+        opacity: 1;
+        pointer-events: all;
+      }
+
+      h1 {
+        font-size: 4rem;
+        text-align: center;
+      }
+
+      .center-content {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .moon-container img {
+        width: 250px;
+        height: 250px;
+        object-fit: cover;
+        border-radius: 50%;
+        transition:
+          transform 0.4s ease,
+          opacity 0.3s ease;
+        cursor: pointer;
+      }
+
+      .moon-container img:hover {
+        transform: scale(1.1);
+      }
+
+      .bottom-text {
+        font-size: 1.3rem;
+        text-align: center;
+      }
+
+      /* الصفحة الثانية */
+      .romantic {
+        background: linear-gradient(90deg, #ff151c, #ff4e63);
+        text-align: center;
+        justify-content: center;
+        gap: 30px;
+      }
+
+      .romantic h1 {
+        font-size: 3.5rem;
+      }
+
+      .romantic p {
+        font-size: 1.3rem;
+        max-width: 800px;
+        line-height: 1.8;
+      }
+
+      .buttons {
+        margin-top: 20px;
+        display: flex;
+        gap: 20px;
+      }
+
+      button {
+        padding: 12px 30px;
+        font-size: 1.2rem;
+        border: none;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: 0.3s ease;
+      }
+
+      .yes {
+        background: #fff;
+        color: #ff4d6d;
+      }
+
+      .yes:hover {
+        background: #ffe3ec;
+      }
+
+      .no {
+        background: #ff4d6d;
+        color: white;
+      }
+
+      .no:hover {
+        background: #c9184a;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- الصفحة الأولى -->
+    <section class="slide active" id="slide1">
+      <h1>مرحبا بالقمر</h1>
+      <br />
+      <p>ايوه زي ماسمعت انت قمر في حياتي ياقمر</p>
+
+      <div class="center-content">
+        <div class="moon-container">
+          <img
+            id="moonImage"
+            src="moon.jpg"
+            data-moon="moon.jpg"
+            data-girl="girl.jpg"
+            alt="moon"
+          />
+        </div>
+      </div>
+
+      <div class="bottom-text">
+        <p>دوس علي القمر عشان نكمل</p>
+      </div>
+    </section>
+
+    <!-- الصفحة الثانية -->
+    <section class="slide romantic" id="slide2">
+      <h1>تعرفي ليه بحبك؟</h1>
+
+      <p>
+        بحبك عشان انت مفيش شبهك، امثالك عمله نادرة في الزمن دا مهما دورت ولفيت
+        استحاله الاقي حد يشبهك في اخلاقك ومحاسنك وعشان كدا انا عايز اتجوزك ياقمر
+        موافقه؟
+      </p>
+
+      <h2>هل موافقه نتجوز؟</h2>
+
+      <div class="buttons">
+        <button class="yes" onclick="goToSlide(3)">موافقه</button>
+        <button class="no" onclick="refuse()">مش موافقة</button>
+      </div>
+    </section>
+
+    <!-- الصفحة الثالثة -->
+    <section class="slide romantic" id="slide3">
+      <h1>احنا مع بعض من قد ايه</h1>
+      <h2 id="counter1">0 يوم</h2>
+
+      <h1 style="margin-top: 40px">طب انا عايز اعيش معاك قد ايه</h1>
+      <h2 id="counter2">0 يوم</h2>
+
+      <button class="yes" style="margin-top: 40px" onclick="goToSlide(4)">
+        موافقه اكمل معاك بقيه عمري
+      </button>
+    </section>
+
+    <!-- الصفحة الرابعة -->
+    <section class="slide romantic" id="slide4">
+      <h1>ودلوفتي سؤال مهم !</h1>
+      <h2>لو رجع بيك الزمن...</h2>
+
+      <p style="font-size: 1.5rem">هتختاري مين؟</p>
+
+      <div
+        class="buttons"
+        style="margin-top: 40px; flex-direction: column; gap: 15px"
+      >
+        <button class="yes" onclick="goToSlide(5)">أختارك</button>
+
+        <button class="yes" onclick="goToSlide(5)">أختارك برضه</button>
+
+        <button class="yes" onclick="goToSlide(5)">مفيش غيرك أصلاً</button>
+      </div>
+    </section>
+
+    <!-- الصفحة الخامسة -->
+    <section class="slide romantic" id="slide5">
+      <h1 id="finalTitle">عارف وعشان كدا بموت فيك ياسمسمايتي</h1>
+
+      <p id="finalText" style="font-size: 1.5rem; max-width: 700px"></p>
+
+      <button class="yes" style="margin-top: 40px" onclick="goToSlide(1)">
+        يلا من الأول
+      </button>
+    </section>
+
+    <script>
+      let currentSlide = 1;
+
+      function goToSlide(number) {
+        if (number === 5) {
+          startFinalSlide();
+        }
+        document
+          .querySelector(`#slide${currentSlide}`)
+          .classList.remove("active");
+        currentSlide = number;
+        document.querySelector(`#slide${currentSlide}`).classList.add("active");
+      }
+
+      function nextSlide() {
+        goToSlide(currentSlide + 1);
+      }
+
+      function refuse() {
+        alert("لا ماهو عافية هنتجوز 😌");
+      }
+
+      const moonImage = document.getElementById("moonImage");
+
+      moonImage.addEventListener("mouseenter", () => {
+        moonImage.src = moonImage.dataset.girl;
+      });
+
+      moonImage.addEventListener("mouseleave", () => {
+        moonImage.src = moonImage.dataset.moon;
+      });
+
+      moonImage.addEventListener("click", () => {
+        goToSlide(2);
+      });
+
+      function typeWriter(element, text, speed = 50, callback = null) {
+        let i = 0;
+
+        function typing() {
+          if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+            setTimeout(typing, speed);
+          } else if (callback) {
+            callback();
+          }
+        }
+
+        typing();
+      }
+
+      function startFinalSlide() {
+        const title = document.getElementById("finalTitle");
+        const text = document.getElementById("finalText");
+
+        title.innerHTML = "";
+        text.innerHTML = "";
+
+        typeWriter(title, "كنت عارف ❤️", 70, () => {
+          typeWriter(
+            text,
+            "كنت عارف إنك هتختاريني مهما حصل... عشان القلوب اللي شبه قلبك مبتختارش غير اللي بيحبها بصدق.",
+            40,
+          );
+        });
+
+        startHearts();
+      }
+
+      function startHearts() {
+        for (let i = 0; i < 30; i++) {
+          const heart = document.createElement("div");
+
+          heart.className = "heart";
+          heart.innerHTML = "❤️";
+
+          heart.style.left = Math.random() * 100 + "vw";
+          heart.style.animationDuration = 4 + Math.random() * 4 + "s";
+
+          document.body.appendChild(heart);
+
+          setTimeout(() => heart.remove(), 6000);
+        }
+      }
+    </script>
+
+    <script>
+      function animateCounter(
+        elementId,
+        target,
+        suffix = " يوم",
+        callback = null,
+      ) {
+        const element = document.getElementById(elementId);
+        let current = 0;
+
+        const duration = 2000;
+        const increment = target / (duration / 16);
+
+        function update() {
+          current += increment;
+
+          if (current >= target) {
+            element.textContent = target + suffix;
+
+            if (callback) callback();
+            return;
+          }
+
+          element.textContent = Math.floor(current) + suffix;
+          requestAnimationFrame(update);
+        }
+
+        requestAnimationFrame(update);
+      }
+
+      function startSlide3Counters() {
+        animateCounter("counter1", 478);
+
+        animateCounter("counter2", 10000, " يوم", () => {
+          setTimeout(() => {
+            document.getElementById("counter2").textContent = "للأبد ❤️";
+          }, 800);
+        });
+      }
+
+      /* نعدل goToSlide عشان يشغل العدادات */
+      const originalGoToSlide = goToSlide;
+
+      goToSlide = function (number) {
+        document
+          .querySelector(`#slide${currentSlide}`)
+          .classList.remove("active");
+        currentSlide = number;
+        document.querySelector(`#slide${currentSlide}`).classList.add("active");
+
+        if (number === 3) {
+          startSlide3Counters();
+        }
+      };
+    </script>
+  </body>
+</html>
