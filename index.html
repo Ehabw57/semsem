@@ -146,9 +146,11 @@
       <h1>مرحبا بالقمر</h1>
       <br />
       <p>ايوه زي ماسمعت انت قمر في حياتي ياقمر</p>
+        <p>دوس علي القمر دوسه طويله عشان نكمل</p>
 
-      <div class="center-content">
-        <div class="moon-container">
+      <div class="center-content" >
+
+        <div class="moon-container" onmouseenter=" const item = document.getElementById('hiddeno'); console.log(item);item.style.display = 'block';">
           <img
             id="moonImage"
             src="moon.jpg"
@@ -158,10 +160,8 @@
           />
         </div>
       </div>
+        <p id='hiddeno' style="display: none;">سوري قصدت دوسه واحده عشان نكمل</p>
 
-      <div class="bottom-text">
-        <p>دوس علي القمر عشان نكمل</p>
-      </div>
     </section>
 
     <!-- الصفحة الثانية -->
@@ -226,6 +226,7 @@
     </section>
 
     <script>
+
       let currentSlide = 1;
 
       function goToSlide(number) {
@@ -366,6 +367,7 @@
           startSlide3Counters();
         }
       };
+
     </script>
   </body>
 </html>
